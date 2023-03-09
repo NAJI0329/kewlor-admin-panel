@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.n-container {
+  @apply max-w-[1400px] w-11/12 m-auto;
+}

@@ -1,0 +1,73 @@
+.kewlor-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background: transparent;
+  justify-content: end;
+  align-items: end;
+}
+
+/* Modal Content */
+.kewlor-modal-content {
+  right: 10px;
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 250px;
+  margin-bottom: 70px;
+  margin-right: 10px;
+}
+
+.kewlor-input {
+  border: 1px solid #5265ff;
+  outline: none;
+  border-radius: 4px;
+  padding: 6px;
+  width: -webkit-fill-available;
+}
+.kewlor-label {
+  color: #5265ff;
+  line-height: normal;
+  margin: 0;
+}
+.kewlor-input-group {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.kewlor-submit-btn {
+  width: max-content;
+  padding: 8px 20px 8px 20px;
+  background-color: #2633ed !important;
+  color: white;
+  border: 0;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.kewlor-message-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  height: 46px;
+  width: 46px;
+  border: 0;
+  border-radius: 30px;
+  background-color: #2633ed;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.kewlor-form-footer {
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+}
