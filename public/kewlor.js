@@ -70,7 +70,7 @@ async function onkewlorCreateConversation() {
   const phonenumber = document.getElementById("kewlor-phonenumber").value;
   const message = document.getElementById("kewlor-message").value;
   const clientId = document.getElementById("kewlor-clientId").value;
-  const res = await fetch("http:127.0.0.1:1000/api/conversation", {
+  const res = await fetch("http://127.0.0.1:1000/api/conversation", {
     method: "POST",
     body: JSON.stringify({
       phonenumber: phonenumber,
