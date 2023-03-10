@@ -6,9 +6,9 @@ function ChatBox() {
     const [selectedSid, setSelectedSid] = useState(null)
 
     return (
-        <div className='n-container py-20'>
-            <p className='text-blue-600 text-4xl font-bold'>Conversations</p>
-            <div className='flex justify-between gap-10 py-4'>
+        <div className='n-container py-0'>
+            {/* <p className='text-blue-600 text-4xl font-bold'>Conversations</p> */}
+            <div className='flex justify-between border border-black/30'>
                 <ConversationList selectedSid={selectedSid} setSelectedSid={setSelectedSid} />
                 <Messages selectedSid={selectedSid} />
             </div>

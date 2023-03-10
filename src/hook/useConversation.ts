@@ -57,9 +57,48 @@ export default function useConversation() {
     }
   };
 
+  const closeConversation = async (conversationSid: string, status: string) => {
+    try {
+      const res = await api.put(`/conversation/${conversationSid}/${status}`);
+      if (res.data.success) {
+        setAlert(res.data.message, "success");
+        return true;
+      }
+      return false;
+    } catch (error: any) {
+      if (error?.response?.data?.message) {
+        setAlert(error?.response?.data?.message, "error");
+      } else {
+        setAlert("Server Error.", "error");
+      }
+      return false;
+    }
+  };
+
+  const getConversationInfoByConversationSid = async function (
+    conversationSid: string
+  ) {
+    try {
+      const res = await api.get(`/conversation/${conversationSid}`);
+      if (res.data.success) {
+        return res.data.data.conversation;
+      }
+      return {};
+    } catch (error: any) {
+      if (error?.response?.data?.message) {
+        setAlert(error?.response?.data?.message, "error");
+      } else {
+        setAlert("Server Error.", "error");
+      }
+      return {};
+    }
+  };
+
   return {
     getConversations,
     getMessagesByConversationSid,
+    getConversationInfoByConversationSid,
     sendMessage,
+    closeConversation,
   };
 }

@@ -2,8 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 
-import './App.css';
-import "react-toastify/dist/ReactToastify.css";
 import SignIn from './screens/auth/SignIn';
 import Loading from "./components/layout/Loading";
 
@@ -17,6 +15,10 @@ import ChatBox from './screens/conversation/ChatBox';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Navbar from './components/layout/Navbar';
 import useAuth from './hook/useAuth';
+
+import './App.css';
+import "react-toastify/dist/ReactToastify.css";
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 function App() {
 
