@@ -80,7 +80,7 @@ async function onkewlorCreateConversation() {
   const clientId = document.getElementById("kewlor-clientId").value;
 
   document.getElementById("kewlor-submit-btn").value = "Loading...";
-  const res = await fetch("http://127.0.0.1:1000/api/conversation", {
+  const res = await fetch("http://173.230.147.100:1000/api/conversation", {
     method: "POST",
     body: JSON.stringify({
       phonenumber: phonenumber,
