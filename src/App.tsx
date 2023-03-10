@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import './App.css';
 import "react-toastify/dist/ReactToastify.css";
 import SignIn from './screens/auth/SignIn';
+import Loading from "./components/layout/Loading";
 
 // Redux
 import { Provider } from "react-redux";
@@ -48,6 +49,7 @@ function App() {
           <Route path="/auth/signin" element={<SignIn />} />
         </Routes>
       </Router>
+      <Loading />
       <ToastContainer />
     </Provider>
   );

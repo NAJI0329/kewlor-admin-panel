@@ -1,5 +1,9 @@
 const messageDiv = document.createElement("div");
-messageDiv.innerHTML = `<button class="kewlor-message-button">Open Modal</button>`;
+messageDiv.innerHTML = `
+<div class="kewlor-message-button">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square">
+<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+</svg> </div>`;
 
 document.body.appendChild(messageDiv);
 
@@ -8,37 +12,34 @@ formDiv.innerHTML = `
   <div id="kewlor-modal" class="kewlor-modal">
     <!-- Modal content -->
     <div class="kewlor-modal-content">
-        <!-- <span class="close">&times;</span> -->
-        <form
-            class="kewlor-form"
-            action="javascript:onkewlorCreateConversation()"
-        >
-            <div class="kewlor-input-group">
-                <p class="kewlor-label">Full Name</p>
-                <input type="text" class="kewlor-input" id="kewlor-fullname" required/>
-            </div>
-            <div class="kewlor-input-group">
-                <p class="kewlor-label">Phone Number</p>
-                <input type="text" class="kewlor-input" id="kewlor-phonenumber" required />
-            </div>
-            <div class="kewlor-input-group">
-                <p class="kewlor-label">Message</p>
-                <textarea
-                class="kewlor-input"
-                rows="4"
-                id="kewlor-message"
-                required
-                ></textarea>
-            </div>
-            <input
-                type="hidden"
-                value="6409029d6198fb28484d28b3"
-                id="kewlor-clientId"
-            />
-            <div class="kewlor-form-footer">
-                <input type="submit" class="kewlor-submit-btn" />
-            </div>
-        </form>
+      <div class="kewlor-modal-header">
+        <p>Text us!</p>
+        <span class="kewlor-modal-close">&times;</span> 
+      </div>
+      <form
+        class="kewlor-form"
+        action="javascript:onkewlorCreateConversation()"
+      >
+      <p class="kewlor-success-text">Successfully sent.</p>
+        <div class="kewlor-input-group">
+            <input type="text" class="kewlor-input" id="kewlor-fullname" placeholder="First and Last Name" required/>
+        </div>
+        <div class="kewlor-input-group">
+            <input type="tel" class="kewlor-input" id="kewlor-phonenumber" placeholder="Phone Number" required>
+        </div>
+        <div class="kewlor-input-group">
+            <textarea
+            class="kewlor-input"
+            rows="6"
+            id="kewlor-message"
+            required
+            placeholder="How can we help you?"
+            ></textarea>
+        </div>
+        <div class="kewlor-form-footer">
+            <input type="submit" class="kewlor-submit-btn" id="kewlor-submit-btn" value="Submit" />
+        </div>
+      </form>
     </div>
   </div>
 `;
@@ -51,7 +52,7 @@ var modal = document.getElementById("kewlor-modal");
 var btn = document.getElementsByClassName("kewlor-message-button")[0];
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("kewlor-modal-close")[0];
 
 // When the user clicks the button, open the modal
 btn.onclick = function () {
@@ -62,7 +63,14 @@ btn.onclick = function () {
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
+    resetInputs();
   }
+};
+
+// When the user clicks the button, open the modal
+span.onclick = function () {
+  modal.style.display = "none";
+  resetInputs();
 };
 
 async function onkewlorCreateConversation() {
@@ -70,21 +78,37 @@ async function onkewlorCreateConversation() {
   const phonenumber = document.getElementById("kewlor-phonenumber").value;
   const message = document.getElementById("kewlor-message").value;
   const clientId = document.getElementById("kewlor-clientId").value;
-  const res = await fetch("http://173.230.147.100:1000/api/conversation", {
+
+  document.getElementById("kewlor-submit-btn").value = "Loading...";
+  const res = await fetch("http://127.0.0.1:1000/api/conversation", {
     method: "POST",
     body: JSON.stringify({
       phonenumber: phonenumber,
       clientId: clientId,
       message: message,
+      name: name,
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       "Access-Control-Allow-Origin": "*",
     },
   });
+  document.getElementById("kewlor-submit-btn").value = "Submit";
   if (res.status === 200) {
-    document.getElementById("kewlor-fullname").value = "";
-    document.getElementById("kewlor-phonenumber").value = "";
-    document.getElementById("kewlor-message").value = "";
+    const SuccessText = document.getElementsByClassName(
+      "kewlor-success-text"
+    )[0];
+    SuccessText.style.display = "block";
+    setTimeout(() => {
+      SuccessText.style.display = "none";
+    }, [1000]);
+
+    resetInputs();
   }
+}
+
+function resetInputs() {
+  document.getElementById("kewlor-fullname").value = "";
+  document.getElementById("kewlor-phonenumber").value = "";
+  document.getElementById("kewlor-message").value = "";
 }

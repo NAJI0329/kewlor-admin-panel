@@ -25,7 +25,7 @@ function ConversationList({ selectedSid, setSelectedSid }: any) {
                 conversations.map((row: any, key) => {
                     return (
                         <div key={key} className="border-b border-black/30 cursor-pointer" onClick={() => { setSelectedSid(row.conversationSid) }}>
-                            <p className='text-black/60 py-3 px-4 font-medium'>{row.customerPhoneNumber}</p>
+                            <p className='text-black/60 py-3 px-4 font-medium'>{row.customerName}</p>
                         </div>
                     )
                 })
